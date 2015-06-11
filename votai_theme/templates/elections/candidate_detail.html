@@ -1,0 +1,183 @@
+{% extends "elections/election_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load markdown_deux_tags %}
+{% load votainteligente_extras %}
+{% load thumbnail %}
+
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
+
+{% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
+
+{% block tab_profile %}class="active"{% endblock %}
+
+{% block mainelection %}
+	<div class="container-profile">
+		<div>
+			<h3>{{ candidate.name }}</h3>
+		</div>
+
+		<div class="profile-candidate">
+			<div class="row">
+				<div class="col-md-3">
+					<div id="candidate-img-profile">
+						{% if candidate.image %}
+
+						{% thumbnail candidate.image "300x300" crop="center" as im %}
+						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
+						{% endthumbnail %}
+						
+						{% else %}
+						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+						{% endif %}
+						
+						<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
+						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
+					</div>
+					
+					{% if candidate.image %}
+					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
+					
+					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</h4>
+								</div>
+								<div class="modal-body container_pic">
+									<div id="text-support" class="alert alert-warning alert-dismissable">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+										{% trans "Recuerda activar tu cámara" %} <i class="icon-arrow-up"></i>
+									</div>
+									<div id="videocontainer">
+										<video id="video"></video>
+										{% thumbnail candidate.image "300x640" crop="center" as im %}
+										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% endthumbnail %}
+									</div>
+									<canvas id="canvas"></canvas>
+									<div id="cover"></div>
+								</div>
+								<div id="controls" class="modal-footer">
+									<span id="socialsharehalfface" class="text-left" style="display:none">
+										<input type="text" id="shareurl" value="" style="width:39%" onclick="this.select();">
+										 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> {% trans "compartir" %}</a>
+										 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> {% trans "publicar" %}</a>
+									</span>
+									<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
+									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
+									<button type="button" class="btn btn-success" id="uploadbutton" onClick="ga('send', 'event', 'share-halfface', 'click');" style="display:none">{% trans "Compartir" %}</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.modal -->
+					{% endif %}
+
+				</div>
+				<div class="col-md-5">
+					<table class="table">
+						{% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %}
+					</table>			
+				</div>
+				
+				<div class="col-md-4 social-side">
+					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
+					
+					
+					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					{% endif %}
+					
+				</div>
+			</div>
+			
+			<div class="row">
+
+				<div class="antecedentes col-md-12">
+					<div class="info">
+					{% for background_category in election.can_election.backgroundcategory_set.all %}
+			 			{% for background in background_category.background_set.all %}
+			 				{% for background_candidate in background.backgroundcandidate_set.all %}
+				 				{{background_candidate.value}}
+			 				{% endfor %}
+			 			{% endfor %}
+			 		{% endfor %}
+
+			 		
+					{{ candidate.biography|markdown }}
+			 		</div>
+			 	</div>
+			</div>
+		</div>
+
+	</div>
+
+	{% if 'questionary'|val_navbars and election.uses_questionary  %}
+	<div class="questionary">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
+			</div>
+		</div>
+		{% for category in election.categories.all %}
+		<div class="panel panel-default">
+			<div class="panel-heading">{{category.name}}</div>
+			<div class="panel-body">
+				{% for topic in category.topics.all %}
+				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
+					<p class="question">
+						{{topic.label}}
+					</p>
+					<p class="answer">
+						{% get_taken_position_for topic candidate %}
+						<!-- source -->
+						<!-- eosource -->
+					</p>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% if 'enabled'|disqus and 'shortname'|disqus %}
+	<div class="disqus">
+		<div id="disqus_thread"></div>
+	    <script type="text/javascript">
+	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	        var disqus_shortname = '{{ 'shortname'|disqus }}'; // required: replace example with your forum shortname
+	        var disqus_developer = {{ 'dev_mode'|disqus }};
+	        /* * * DON'T EDIT BELOW THIS LINE * * */
+	        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+	    </script>
+	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
+	{% endif %}
+	<script type="text/javascript">
+	var API_KEY = '{{ 'client_id'|website_imgur }}';
+	var candidate_name = '{{candidate.name}}';
+	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}';
+	</script>
+	<script type="text/javascript" src="{% static 'js/video.js' %}"></script>
+{% endblock mainelection %}
+
+{% block extrajs %}
+	$(document).ready(function() {
+		$('div.antecedentes div.info').expander({
+			expandText: '<i class="icon-chevron-down"></i>',
+			userCollapseText: '<i class="icon-chevron-up"></i>',
+			slicePoint: 180,
+		});
+
+		$('.pop-fuente').popover();
+	});
+{% endblock extrajs %}

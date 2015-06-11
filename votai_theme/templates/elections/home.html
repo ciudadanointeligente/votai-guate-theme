@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block extrajs %}
+{% include 'elections/home.js' %}
+{% endblock extrajs %}
+
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 class="text-center intro-home">
+        Las elecciones de argentina
+    </div>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+
+  <!-- Featured Elections  -->
+  <div class="hidden-xs">
+  {% if featured_elections|length = 1 %}
+    <!-- Featured Election block -->
+    <div class="contenedorDestacado fondo-blanco">
+      <ul>
+        {% for featured_election in featured_elections %}
+          <li class="containerAccordion">
+            <script type="text/javascript">
+            jQuery(document).ready(function($){
+              screenwidth = $(".containerAccordion").width();
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({ 
+                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }}, 
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true 
+              });
+            });
+            </script>
+            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+              {% for candidate in featured_election.candidates.all %}
+              <li>
+                  {% if candidate.image %}
+                  {% thumbnail candidate.image "x300" as im %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  {% endthumbnail %}
+                  {% else %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                  {% endif %}
+                  <div class="caption">{{ candidate.name }}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
+            <div class="election-description">
+              <p>{{ featured_election.description|truncatewords:100 }}</p> 
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div><!-- /contenedorDestacado -->
+    <!-- /FeaturedBlock -->
+
+  {% elif featured_elections|length = 2 %}
+    <!-- Featured Election block -->
+    <div class="contenedorDestacado fondo-blanco">
+      <ul>
+        {% for featured_election in featured_elections %}
+          <li class="col-md-6 containerAccordion">
+            <script type="text/javascript">
+            jQuery(document).ready(function($){
+              screenwidth = $(".containerAccordion").width();
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }}, 
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+              });
+            });
+            </script>
+            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+              {% for candidate in featured_election.candidates.all %}
+              <li>
+                {% if candidate.image %}
+                  {% thumbnail candidate.image "300x300" crop="center" as im %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  {% endthumbnail %}
+                {% else %}
+                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                {% endif %}
+                <div class="caption">{{ candidate.name }}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{ featured_election.name }}</h3></a>
+            <div class="election-description">
+              <p>{{ featured_election.description|truncatewords:50 }}</p> 
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div><!-- /contenedorDestacado -->
+
+  {% elif featured_elections|length >= 3 %}
+      <!-- Featured Election block -->
+    <div class="contenedorDestacado fondo-blanco">
+      <ul>
+        {% for featured_election in featured_elections %}
+        <li class="col-md-4 containerAccordion">
+          <script type="text/javascript">
+          jQuery(document).ready(function($){
+            screenwidth = $(".containerAccordion").width();
+            $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+              width:screenwidth, height:250, columns:{{featured_election.candidates.all|length}}, 
+              distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+            });
+          });
+          </script>
+          <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+            {% for candidate in featured_election.candidates.all %}
+            <li>
+              {% if candidate.image %}
+                {% thumbnail candidate.image "x300" as im %}
+                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                {% endthumbnail %}
+              {% else %}
+                <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+              {% endif %}
+              <div class="caption">{{ candidate.name }}</div>
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{ featured_election.name }}</h3></a>
+          <div class="election-description">
+            <p>{{ featured_election.description|truncatewords:33 }}</p> 
+          </div>
+        </li>
+        {% if forloop.counter == 3 %}
+      </ul>
+      <ul>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div><!-- /contenedorDestacado -->
+  {% endif %}
+  </div>
+
+  <!-- mobile version -->
+  <div class="visible-xs">
+    {% for featured_election in featured_elections %}
+      <h3><a href="{{ featured_election.get_absolute_url }}">{{featured_election.name}}</a></h3>
+
+      <ul>
+      {% for candidate in featured_election.candidates.all %}
+        <li><a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}">{{ candidate.name }}</a></li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+  <!-- end mobile version -->
+
+  <!-- Searchable Elections  -->
+  {% if searchable_elections_enabled %}
+
+  <h2>{% trans "Encuentra tus candidatos" %}</h2>
+
+    <div id="home-search" class="row" data-ng-controller="searchFormController">      
+
+          <div class="row form-group">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default"><i class="icon-search"></i></button>
+                </span>
+                <input type="text" class="form-control" ng-enter="console.log('something')" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" data-ng-model="searchElection">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
+                </span>
+              </div>
+            </div>
+          </div>
+    
+        <div class="elections-results">
+            <ul class="list-inline" data-ng-show="searchElection">
+                <li data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
+                  <a href="[[election.detaillink]]">[[election.name]]</a>
+                    <ul>
+                      <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock content %}
+
+{% block extrafooter %}
+  <div class="extra-footer">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+              <div class="col-md-4">
+                 <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock extrafooter %}
