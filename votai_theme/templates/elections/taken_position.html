@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if taken_position %}
+{% if taken_position and taken_position.value %}
     {% if only_text %}
         {{taken_position.position.label}}
     {% else %}
