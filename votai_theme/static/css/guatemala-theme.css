@@ -1,0 +1,43 @@
+#footer {
+    background-color: #323a45;
+}
+
+.read-more a, .read-less a {
+    background: #323a45;
+}
+
+.bt-twitter {
+    color: #323a45;
+}
+
+#myCandidate .modal-header {
+    background-color: #323a45;
+}
+
+html, body {
+    background-color: #eaedf2;
+    color: #323a45;
+}
+.navbar-inverse {
+    background-color: #323a45;
+}
+
+.questionary .panel-heading {
+    background-color: #323a45;
+}
+
+.panel-default>.panel-heading {
+    background-color: #323a45;
+}
+
+#soulmate-result .fondo-azuloscuro {
+    background: #323a45;
+}
+
+.chosen-container-single .chosen-single {
+    background: #323a45;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+    background: #323a45;
+}
