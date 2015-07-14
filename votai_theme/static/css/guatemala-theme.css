@@ -99,3 +99,12 @@ html, body {
 #footer {
   background-color: #545759;
 }
+
+#footer ul {
+  padding: 0 30px;
+}
+
+#footer .logo {
+  width: inherit;
+  margin-right: 15px;
+}
