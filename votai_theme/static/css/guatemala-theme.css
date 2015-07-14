@@ -1,9 +1,13 @@
-#footer {
-    background-color: #323a45;
+a {
+  color: #40B4F1;
 }
 
-.read-more a, .read-less a {
-    background: #323a45;
+body {
+  background-color: #E8EBEC;
+}
+
+#footer {
+    background-color: #323a45;
 }
 
 .bt-twitter {
@@ -19,7 +23,7 @@ html, body {
     color: #323a45;
 }
 .navbar-inverse {
-    background-color: #323a45;
+    background-color: #545759;
 }
 
 .questionary .panel-heading {
@@ -40,4 +44,58 @@ html, body {
 
 .chosen-container-active.chosen-with-drop .chosen-single {
     background: #323a45;
+}
+
+.alert-info {
+  color: #40B4F1;
+  background-color: #DAF1FD;
+  border-color: #C1E5F9;
+}
+
+/*Menu*/
+
+.nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
+  background: #787F83;
+}
+
+.nav-candidator .list-inline>li.active a:after {
+  border-top-color: #787F83;
+}
+
+/*Perfiles*/
+
+.container-profile {
+  background: #787F83;
+}
+
+.profile-candidate {
+  background-color: #787F83;
+}
+
+.read-more a, .read-less a {
+    background: #545759;
+}
+
+.panel-default>.panel-heading {
+  background-color: #545759;
+}
+
+/*Frente a frente*/
+
+.chosen-container-single .chosen-single {
+  background: #545759;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+  background: #545759;
+}
+
+#compare-candidates .candidate-percentage-txt {
+  background: #40B4F1;
+}
+
+/*Footer*/
+
+#footer {
+  background-color: #545759;
 }
