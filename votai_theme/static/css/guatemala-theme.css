@@ -94,6 +94,16 @@ html, body {
   background: #40B4F1;
 }
 
+/*Media naranja*/
+
+#soulmate-result {
+  background: #787F83;
+}
+
+#soulmate-result .fondo-azuloscuro {
+  background: #545759;
+}
+
 /*Footer*/
 
 #footer {
