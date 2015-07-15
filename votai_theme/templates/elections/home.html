@@ -50,7 +50,7 @@
             <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
             <div class="election-description">
               <p>{{ featured_election.description }}</p> 
-              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="label label-warning"><i class="icon-heart"></i> Quién es tu 1/2 Naranja?</a>
+              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="btn btn-warning medianaranja-portada"><i class="icon-heart"></i> Quién es tu 1/2 Naranja?</a>
             </div>
           </li>
         {% endfor %}

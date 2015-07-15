@@ -118,3 +118,7 @@ html, body {
   width: inherit;
   margin-right: 15px;
 }
+.medianaranja-portada {
+  width: 100%;
+  font-size: 36px;
+}
