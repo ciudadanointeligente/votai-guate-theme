@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="text-center intro-home">
-        Las próximas Elecciones Generales en Guatemala se llevarán a cabo el domingo 06 de septiembre de 2015 en ellas los guatemaltecos elegiremos a los candidatos a la presidencia, el Congreso y municipalidades.
+        Encuentra aquí toda la información para ir a votar informado el próximo 6 de septiembre.
       </h2>
     </div>
   </div>
@@ -38,6 +38,9 @@
               });
             });
             </script>
+            <div class="12naranja-front">
+              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="btn btn-warning medianaranja-portada"><i class="icon-heart"></i> Quién es tu 1/2 Naranja?</a>
+            </div>
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
               {% for candidate in featured_election.candidates.all %}
               <li>
@@ -58,7 +61,6 @@
             <div class="election-description">
               {% comment "Estoy comentando esto para colocar el titulo en h2 de arriba" %}<p>{{ featured_election.description }}</p> 
               {% endcomment %}
-              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="btn btn-warning medianaranja-portada"><i class="icon-heart"></i> Quién es tu 1/2 Naranja?</a>
             </div>
           </li>
         {% endfor %}
