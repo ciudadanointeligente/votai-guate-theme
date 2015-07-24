@@ -12,6 +12,14 @@
 
 {% block tab_profile %}class="active"{% endblock %}
 
+{% block extra_links %}
+{% thumbnail candidate.extra_info.logo_partido_politico "16x16" crop="center" as im %}
+<li>
+	<a href="#"><img src="{{ im.url }}">{{ candidate.extra_info.partido_politico}}</a>
+</li>
+{% endthumbnail %}
+{% endblock extra_links %}
+
 {% block mainelection %}
 	<div class="container-profile">
 		<div>

@@ -70,7 +70,8 @@
 					{% if election.extra_info_title %}
 					<li {% block tab_extrainfo %}{% endblock %}><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
 					{% endif %}
-					
+					{% block extra_links %}
+					{% endblock extra_links %}
 				</ul>
 			</nav>
 		</div>
