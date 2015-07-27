@@ -11,9 +11,6 @@
 <div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h2 class="text-center intro-home">
-        Encuentra aquí toda la información para ir a votar informado el próximo 6 de septiembre.
-      </h2>
     </div>
   </div>
 
@@ -38,9 +35,7 @@
               });
             });
             </script>
-            <div class="12naranjafront" style="margin-bottom: 25px;">
-              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="btn btn-warning medianaranja-portada"><i class="icon-heart"></i> Quién es tu 1/2 Naranja?</a>
-            </div>
+            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
               {% for candidate in featured_election.candidates.all %}
               <li>
@@ -56,7 +51,9 @@
               {% endfor %}
             </ul>
             
-            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
+            <div class="12naranjafront" style="margin: 25px;">
+              <a href="{% url 'soul_mate_detail_view' slug=featured_election.slug %}" class="btn btn-warning medianaranja-portada"><i class="icon-heart"></i> ¿Quién es tu 1/2 Naranja?</a>
+            </div>
 
             <div class="election-description">
               {% comment "Estoy comentando esto para colocar el titulo en h2 de arriba" %}<p>{{ featured_election.description }}</p> 
@@ -148,6 +145,9 @@
       </ul>
     </div><!-- /contenedorDestacado -->
   {% endif %}
+  <h2 class="text-center intro-home">
+    Encuentra aquí toda la información para ir a votar informado el próximo 6 de septiembre.
+  </h2>
   </div>
 
   <!-- mobile version -->
