@@ -89,3 +89,22 @@
 </div>
 
 {% endblock mainelection %}
+
+
+{% block extrafooter %}
+  <div class="extra-footer">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                <a href="{% url 'election_view' slug=election.slug %}"><img src="{% static 'img/perfiles.jpg' %}"></a>
+              </div>
+              <div class="col-md-4">
+                <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}"><img src="{% static 'img/frente_a_frente.jpg' %}"></a>
+              </div>
+              <div class="col-md-4">
+                <a href="{% url 'soul_mate_detail_view' slug='presidencial' %}"><img src="{% static 'img/12naranja.jpg' %}"></a>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock extrafooter %}
