@@ -35,7 +35,7 @@
               });
             });
             </script>
-            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
+            <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}} - Política Abierta para una Guatemala despierta</h3></a>
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
               {% for candidate in featured_election.candidates.all %}
               <li>
