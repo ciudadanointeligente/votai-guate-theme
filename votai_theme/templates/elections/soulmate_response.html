@@ -74,8 +74,68 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
-			{% for cat in winner.category_score %}
+		<div class="col-md-4">
+
+			<!-- Form -->
+		<form action="https://docs.google.com/forms/d/1trOw1ZVJZT37hB9erG2sTsB4Qd6cCbHsQ-RgB663vxE/formResponse?embedded=true" method="POST" id="ss-form" target="_self" onsubmit=""><ol role="list" class="ss-question-list" style="padding-left: 0">
+			<div class="ss-form-question errorbox-good" role="listitem">
+				<div dir="auto" class="ss-item ss-item-required ss-radio">
+					<div class="ss-form-entry">
+						<h4 class="ss-q-item-label" for="entry_279593651"><div>¿Estás satisfecho/a con tu respuesta?*
+						<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></h4>
+						</div>
+						<div class="ss-q-help ss-secondary-text" dir="auto"></div></label>
+
+						<ul class="ss-choices list-unstyled" role="radiogroup" aria-label="¿Estás satisfecha con tu respuesta?  ">
+								<li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.301682834" value="Si, me representa completamente" id="group_301682834_1" role="radio" class="ss-q-radio" aria-label="Si, me representa completamente" required="" aria-required="true"></span>
+								<span class="ss-choice-label">Si, me representa completamente</span>
+								</li> <li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.301682834" value="Si, pero no estoy deacuerdo con el porcentage" id="group_301682834_2" role="radio" class="ss-q-radio" aria-label="Si, pero no estoy deacuerdo con el porcentage" required="" aria-required="true"></span>
+								<span class="ss-choice-label">Si, pero no estoy deacuerdo con el porcentage</span>
+								</li>
+								<li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.301682834" value="No, pero me he sorprendido con el resultado" id="group_301682834_3" role="radio" class="ss-q-radio" aria-label="No, pero me he sorprendido con el resultado" required="" aria-required="true"></span>
+								<span class="ss-choice-label">No, pero me he sorprendido con el resultado</span>
+								</li> 
+								<li class="ss-choice-item"><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.301682834" value="No y no estoy de acuerdo con el resultado" id="group_301682834_4" role="radio" class="ss-q-radio" aria-label="No y no estoy de acuerdo con el resultado" required="" aria-required="true"></span>
+								<span class="ss-choice-label">No y no estoy de acuerdo con el resultado</span>
+								</li>
+						</ul>
+					<div class="error-message" id="279593651_errorMessage"></div>
+					</div>
+			</div>
+			<div class="ss-form-question errorbox-good" role="listitem">
+			<div dir="auto" class="ss-item  ss-radio"><div class="ss-form-entry">
+			<label class="ss-q-item-label" for="entry_1883263373"><h4 class="ss-q-title">¿Te sientes más informado/a?
+			</h4>
+			<div class="ss-q-help ss-secondary-text" dir="auto"></div></label>
+
+			<ul class="ss-choices list-unstyled" role="radiogroup" aria-label="¿Te sientes más informada?  ">
+					<li><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1801615423" value="Si, obtuve mucha información" id="group_1801615423_1" role="radio" class="ss-q-radio" aria-label="Si, obtuve mucha información"></span>
+					<span class="ss-choice-label">Si, obtuve mucha información</span>
+					</li> <li ><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1801615423" value="Si, pero ya estaba informado" id="group_1801615423_2" role="radio" class="ss-q-radio" aria-label="Si, pero ya estaba informado"></span>
+					<span class="ss-choice-label">Si, pero ya estaba informado</span>
+					</li>
+				<li ><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1801615423" value="No obtuve nueva información" id="group_1801615423_3" role="radio" class="ss-q-radio" aria-label="No obtuve nueva información"></span>
+				<span class="ss-choice-label">No obtuve nueva información</span>
+				</li> <li ><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1801615423" value="Creo que este sitio no es un aporte" id="group_1801615423_4" role="radio" class="ss-q-radio" aria-label="Creo que este sitio no es un aporte"></span>
+				<span class="ss-choice-label">Creo que este sitio no es un aporte</span>
+				</li>
+			</ul>
+				<div class="error-message" id="1883263373_errorMessage"></div>
+				</div></div></div>
+				<input type="hidden" name="draftResponse" value="[,,&quot;8511470301182518309&quot;]
+				">
+				<input type="hidden" name="pageHistory" value="0">
+
+
+				<input type="hidden" name="fbzx" value="8511470301182518309">
+
+				<div class="ss-item ss-navigate">
+				<input type="submit" name="submit" value="Enviar" id="ss-submit" class="btn btn-primary full-width"></div></ol>
+			</div>	
+		</form>
+	</div>
+	<!-- End form -->
+				{% for cat in winner.category_score %}
 			<div class="container-progress">
 				<div class="progress">
 					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{cat.score|floatformat}}" aria-valuemin="0" aria-valuemax="100" style="width: {{cat.score|floatformat}}%">
@@ -84,7 +144,7 @@
 				<p>{{cat.category}}<span>{{cat.score|floatformat}}%</span></p>
 			</div>
 			{% if forloop.counter|divisibleby:6 %}
-			</div>
+		</div>
 			<div class="col-md-2">
 			{% endif %}
 			{% endfor %}
@@ -111,9 +171,9 @@
 		{% endif %}
 		{% endfor %}
 	</div>
-	<div class="row text-center">
-		<iframe src="https://docs.google.com/forms/d/1trOw1ZVJZT37hB9erG2sTsB4Qd6cCbHsQ-RgB663vxE/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>		
-	</div>
+
+
+
 </div>
 <script type="text/javascript">
 var API_KEY = '{{ 'client_id'|website_imgur }}';

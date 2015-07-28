@@ -52,6 +52,14 @@ html, body {
   border-color: #C1E5F9;
 }
 
+.full-width {
+  width: 100%;
+}
+
+.ss-item.ss-navigate {
+    margin-top: 15px;
+}
+
 /*Menu*/
 
 .nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
@@ -81,9 +89,10 @@ html, body {
 }
 
 .logo-partido {
-    background-color: white;
-    text-align: center;
-    margin-bottom: 30px;
+  background-color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 15px 0 5px;
 }
 
 /*Frente a frente*/
