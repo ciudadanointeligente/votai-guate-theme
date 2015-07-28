@@ -15,7 +15,7 @@
         <meta name="google-site-verification" content="{{ 'gsite-verification'|ga }}">
 
         <!--for facebook fans-->
-        <meta property="og:title" content="{{ 'title'|ogpdata }}">
+        <meta property="og:title" content="{{ 'title'|ogpdata }}{% block extra_og_title %}{% endblock extra_og_title %}">
         <meta property="og:description" content="Encuentra aquí toda la información para ir a votar informado el próximo 6 de septiembre.">
         <meta property="og:type" content="{{ 'type'|ogpdata }}">
         <meta property="og:url" content="{{ 'url'|ogpdata }}">
@@ -98,6 +98,7 @@
                     }
                     </style>
                     <div class="col-md-6 text-center">
+                        <h5>Desarrollado por:</h5>
                         <a href="https://www.globalshapers.org/hubs/guatemala-city"><img class="logo" src="{% static 'img/logo_global_shapers.png' %}" alt="Global Shapers Guatemala City" title="Global Shapers Guatemala City"></a>
                         <a href="http://www.redciudadana.org/" target="_blank"><img class="logo" src="{% static 'img/logo_red_ciudadana.png' %}" alt="Red Ciudadana" title="Red ciudadana"></a>
                         <a href="http://www.ciudadanointeligente.org/" target="_blank"><img class="logo" src="{% static 'img/logo-ciudadanoi.png' %}" alt="Fundación Ciudadano Inteligente" title="Fundación Ciudadano Inteligente"></a>
@@ -108,6 +109,17 @@
                             <li><a href="mailto:" class="email-prensa" target="_top"><i class="icon-envelope-alt"></i> Email</a></li>
                             <li><a href="https://goo.gl/maps/aIJEd" target="_blank"><i class="icon-map-marker"></i> 12 calle 1-25 zona 10 Edificio Géminis 10 Torre Norte Oficina 1413</a></li>
                         </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h5>Con el apoyo de:</h5>
+                        <a href="http://www.kas.de/guatemala/" target="_blank"><img class="logo" src="{% static 'img/Konrad.png' %}" alt="Konrad-Adenauer-Stiftung" title="Konrad-Adenauer-Stiftung"></a>
+                        <a href="http://www.asies.org.gt/" target="_blank"><img class="logo" src="{% static 'img/LogosAsies35.png' %}" alt="ASIES" title="ASIES"></a>
+                    </div>
+                    <div class="col-md-3">
                     </div>
                 </div>
             </div>
