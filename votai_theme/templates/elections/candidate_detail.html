@@ -13,11 +13,6 @@
 {% block tab_profile %}class="active"{% endblock %}
 
 {% block extra_links %}
-{% thumbnail candidate.extra_info.logo_partido_politico "16x16" crop="center" as im %}
-<li>
-	<a href="{{ candidate.extra_info.url_partido_politico }}" target="_blank"><img src="{{ im.url }}">{{ candidate.extra_info.partido_politico}}</a>
-</li>
-{% endthumbnail %}
 {% endblock extra_links %}
 
 {% block mainelection %}
@@ -92,13 +87,19 @@
 				</div>
 				
 				<div class="col-md-4 social-side">
+					{% thumbnail candidate.extra_info.logo_partido_politico "100x100" crop="center" as im %}
+					<div class="logo-partido">
+						<a href="{{ candidate.extra_info.url_partido_politico }}" target="_blank"><img src="{{ im.url }}"></a>
+					</div>
+					{% endthumbnail %}
+
 					{% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}
 					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
-					
 					
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
 					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
+
 					
 				</div>
 			</div>
