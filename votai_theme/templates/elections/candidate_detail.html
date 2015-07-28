@@ -36,11 +36,11 @@
 						{% endif %}
 						
 						<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
-						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
+						{% if not candidate.has_answered %}<div class="ribbon">No responde</div>{% endif %}
 					</div>
 					
 					{% if candidate.image %}
-					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
+					<!-- <a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
 					
 					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
