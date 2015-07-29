@@ -1,10 +1,19 @@
 {% load i18n %}
-{% if taken_position and taken_position.position %}
-    {% if only_text %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+
+{% if taken_position.position %}
         {{taken_position.position.label}}
-    {% else %}
-        <i class="icon-quote-left"></i>{{taken_position.position.label}}<i class="icon-quote-right"></i>
+    <p class="position_description">
+     {{taken_position.description}}
+
+    {% if taken_position.sources.all %}
+        {% for source in taken_position.sources.all %}
+            
+            {{source.note}}(<a href="{{source.url}}" target="_blank">Fuente</a>)
+            
+        {% endfor %}
     {% endif %}
-{% else %}
-    {% trans "Esta(e) candidata(o) aún no responde" %} 
+    </p>
 {% endif %}
