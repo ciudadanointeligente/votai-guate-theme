@@ -11,7 +11,7 @@
     {% if taken_position.sources.all %}
         {% for source in taken_position.sources.all %}
             
-            {{source.note}} (<a href="{{source.url}}" target="_blank">Fuente</a>)
+            <small>{{source.note}} (<a href="{{source.url}}" target="_blank">Fuente</a>)</small>
             
         {% endfor %}
     {% endif %}
