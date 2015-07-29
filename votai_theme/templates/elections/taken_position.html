@@ -11,9 +11,11 @@
     {% if taken_position.sources.all %}
         {% for source in taken_position.sources.all %}
             
-            {{source.note}}(<a href="{{source.url}}" target="_blank">Fuente</a>)
+            (<a href="{{source.url}}" target="_blank">{% if source.note %}{{source.note}}{% else %}Fuente{% endif %}</a>)
             
         {% endfor %}
     {% endif %}
     </p>
+{% else %}
+    {% trans "Esta(e) candidata(o) aún no responde" %} 
 {% endif %}
