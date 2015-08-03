@@ -138,9 +138,13 @@
 			<div class="panel-body">
 				{% for topic in category.topics.all %}
 				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
-					<p class="question"  data-toggle="tooltip" title="{{ topic.description|markdown }}" data-html="true" data-placement="top">
+					<p class="question">
 						{{topic.label}}
+						{% if topic.description %}
+						<i class="fa fa-info" data-toggle="tooltip" title="{{ topic.description|markdown }}" data-html="true" data-placement="top"></i>
+						{% endif %}
 					</p>
+
 					<p class="answer">
 						{% get_taken_position_for topic candidate %}
 						<!-- source -->
