@@ -138,7 +138,7 @@
 			<div class="panel-body">
 				{% for topic in category.topics.all %}
 				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
-					<p class="question">
+					<p class="question"  data-toggle="tooltip" title="{{ topic.description|markdown }}" data-html="true" data-placement="top">
 						{{topic.label}}
 					</p>
 					<p class="answer">
@@ -153,7 +153,6 @@
 		{% endfor %}
 	</div>
 	{% endif %}
-
 	{% if 'enabled'|disqus and 'shortname'|disqus %}
 	<div class="disqus">
 		<div id="disqus_thread"></div>
@@ -181,6 +180,7 @@
 {% endblock mainelection %}
 
 {% block extrajs %}
+
 	$(document).ready(function() {
 		$('div.antecedentes div.info').expander({
 			expandText: '<i class="icon-chevron-down"></i>',
@@ -189,5 +189,6 @@
 		});
 
 		$('.pop-fuente').popover();
+		$('[data-toggle="tooltip"]').tooltip()
 	});
 {% endblock extrajs %}
