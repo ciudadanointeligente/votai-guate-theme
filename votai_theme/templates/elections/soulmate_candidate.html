@@ -1,9 +1,10 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-
+{% load markdown_deux_tags %}
 {% block extrajs %}
 $(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
 	$('#btn-find-soulmate').on('click', function(){
 		var csrftoken = $.cookie('csrftoken');
 		var questions = $('#form-soulmate :input[name^="question"]');
@@ -71,7 +72,16 @@ $(document).ready(function(){
 				{% for topic in category.topics.all %}
 				<div class="row fondo-gris">
 					<div class="col-md-8">
-					<p class="question">{{topic.label}}</p>
+					<p class="question">{{topic.label}} 
+					{% if topic.description %}
+					<span class="fa-stack fa-md"  data-toggle="tooltip" title="{{ topic.description|markdown }}" data-html="true" data-placement="top">
+					  <i class="fa fa-circle fa-stack-2x"></i>
+					  <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+					</span>
+					{% endif %}
+					</p>
+
+					
 						<ul class="list-unstyled">
 							{% for position in topic.positions.all %}
 							<li>
