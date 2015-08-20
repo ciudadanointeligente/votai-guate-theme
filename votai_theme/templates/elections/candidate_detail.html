@@ -135,7 +135,15 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					{{ candidate.biography|markdown }}
+					
+					{% for contact_detail in candidate.contact_details.all %}
+						{% if contact_detail.contact_type == "VIDEO" %}
+							<h3>{{contact_detail.label}}</h3>
+							<iframe width="560" height="315" src="{{contact_detail.value}}" frameborder="0" allowfullscreen></iframe>
+						{% endif %}
+					{% endfor %}
 				</div>
+
 			</div>
 		</div>
 	{% endifequal %}
