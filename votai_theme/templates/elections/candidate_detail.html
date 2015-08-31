@@ -116,16 +116,16 @@
 			 			{% endfor %}
 			 		{% endfor %}
 
-			 		{% ifnotequal election.slug "diputados-listado-nacional" %}
+			 		{% if election.slug == "presidencial" %}
 					{{ candidate.biography|markdown }}
-					{% endifnotequal %}
+					{% endif %}
 			 		</div>
 			 	</div>
 			</div>
 		</div>
 
 	</div>
-	{% ifequal election.slug "diputados-listado-nacional" %}
+	{% if election.slug != "presidencial" %}
 		<div class="questionary">
 			<div class="row">
 				<div class="col-md-6">
@@ -146,7 +146,7 @@
 
 			</div>
 		</div>
-	{% endifequal %}
+	{% endif %}
 	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
 		<div class="row">
