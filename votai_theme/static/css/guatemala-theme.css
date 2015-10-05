@@ -151,3 +151,7 @@ html, body {
 .explanation-container {
    color: #323A45;
 }
+
+.accordion .panel{
+  background-color: #545759;
+}

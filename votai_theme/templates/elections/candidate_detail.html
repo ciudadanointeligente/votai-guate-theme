@@ -116,16 +116,12 @@
 			 			{% endfor %}
 			 		{% endfor %}
 
-			 		{% if election.slug == "presidencial" %}
-					{{ candidate.biography|markdown }}
-					{% endif %}
 			 		</div>
 			 	</div>
 			</div>
 		</div>
 
 	</div>
-	{% if election.slug != "presidencial" %}
 		<div class="questionary">
 			<div class="row">
 				<div class="col-md-6">
@@ -133,20 +129,20 @@
 				</div>
 			</div>
 			<div class="panel panel-default">
+				<div class="panel-heading">Biografía</div>
 				<div class="panel-body">
-					{{ candidate.biography|markdown }}
+							{{ candidate.biography|markdown }}
 					
-					{% for contact_detail in candidate.contact_details.all %}
-						{% if contact_detail.contact_type == "VIDEO" %}
-							<h3>{{contact_detail.label}}</h3>
-							<iframe width="560" height="315" src="{{contact_detail.value}}" frameborder="0" allowfullscreen></iframe>
-						{% endif %}
-					{% endfor %}
+						{% for contact_detail in candidate.contact_details.all %}
+							{% if contact_detail.contact_type == "VIDEO" %}
+								<h3>{{contact_detail.label}}</h3>
+								<iframe width="560" height="315" src="{{contact_detail.value}}" frameborder="0" allowfullscreen></iframe>
+							{% endif %}
+						{% endfor %}
 				</div>
 
 			</div>
 		</div>
-	{% endif %}
 	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
 		<div class="row">

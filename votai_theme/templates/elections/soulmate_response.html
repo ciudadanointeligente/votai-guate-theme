@@ -58,7 +58,7 @@
 			{% endif %}
 		</div>
 		<div class="col-md-5">
-			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
+			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a></h3>
 			<h2>{{winner.percentage|mul:100|floatformat}}<span>% </span></h2>
 				<div>{% trans "de afinidad" %}</div>
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">
@@ -67,7 +67,7 @@
 				{% display_explanation winner.explanation election %}
 			<div class="row fondo-azuloscuro">
 				<div class="col-md-5">
-					{% trans "Declara tu amor publicamente:" %}
+					{% trans "Comparte tus resultados:" %}
 				</div>
 				<div class="col-md-7">
 					<ul class="list-inline">
