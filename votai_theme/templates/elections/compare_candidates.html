@@ -1,6 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 {% load votainteligente_extras %}
+{% load thumbnail %}
 
 {% block title %} - {{election}} - {% trans "Frente a Frente"%}{% endblock title%}
 
@@ -60,7 +61,14 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-1">
+								{% if first_candidate.image %}
+									{% thumbnail first_candidate.image "100x100" crop="center" as im %}
+										<img src="{{ im.url }}" alt="{{first_candidate.name}}" border="0" class="img-responsive pull-right">
+									{% endthumbnail %}
+								{% endif %}
+							</div>
+							<div class="col-md-5">
 								<div class="fondo-blanco contenedor">
 									<p>
 										{% get_taken_position_for topic first_candidate only_text=True %}
@@ -68,7 +76,14 @@
 									<p class="text-right">{{ first_candidate.name }}</p>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-1">
+								{% if second_candidate.image %}
+									{% thumbnail second_candidate.image "100x100" crop="center" as im %}
+										<img src="{{ im.url }}" alt="{{second_candidate.name}}" border="0" class="img-responsive pull-left">
+									{% endthumbnail %}
+								{% endif %}
+							</div>
+							<div class="col-md-5">
 								<div class="fondo-blanco contenedor">
 									<p>
 										{% get_taken_position_for topic second_candidate only_text=True %}
