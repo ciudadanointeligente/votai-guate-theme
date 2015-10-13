@@ -49,7 +49,7 @@
                 <a href="{% url 'questionary_detail_view' slug=election.slug %}"><img src="{% static 'img/cuestionario.jpg' %}"></a>
               </div>
               <div class="col-md-4">
-                <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}"><img src="{% static 'img/frente_a_frente.jpg' %}"></a>
+                <a href="{% url 'face_to_face_two_candidates_detail_view' slug=election.slug slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}"><img src="{% static 'img/frente_a_frente.jpg' %}"></a>
               </div>
               <div class="col-md-4">
                 <a href="{% url 'soul_mate_detail_view' slug='presidencial' %}"><img src="{% static 'img/12naranja.jpg' %}"></a>

@@ -6,7 +6,22 @@
 {% load votainteligente_extras %}
 {% load thumbnail %}
 
-{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
+{% block url_face_to_face %}
+{% spaceless %}
+{% if election.slug == 'presidencial' %}
+	{% if candidate.id == 'jimmy-morales' %}
+	{% url 'face_to_face_two_candidates_detail_view' slug='presidencial' slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}
+{% endif %}
+
+{% if candidate.id  == 'sandra-torres-casanova' %}
+	{% url 'face_to_face_two_candidates_detail_view' slug='presidencial' slug_candidate_one='sandra-torres-casanova' slug_candidate_two='jimmy-morales' %}
+{% endif %}
+{% else %}
+	{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}
+{% endif %}
+{% endspaceless %}
+
+{% endblock url_face_to_face %}
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
@@ -58,7 +73,17 @@
 					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
 					
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% spaceless %}{% if election.slug == 'presidencial' %}
+						 	{% if candidate.id == 'jimmy-morales' %}
+								{% url 'face_to_face_two_candidates_detail_view' slug='presidencial' slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}
+							{% endif %}
+
+							{% if candidate.id  == 'sandra-torres-casanova' %}
+								{% url 'face_to_face_two_candidates_detail_view' slug='presidencial' slug_candidate_one='sandra-torres-casanova' slug_candidate_two='jimmy-morales' %}
+							{% endif %}
+						 {% else %}
+						 	{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}
+						 {% endif %}{% endspaceless %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
 
 					

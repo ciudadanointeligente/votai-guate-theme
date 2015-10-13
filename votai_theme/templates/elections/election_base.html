@@ -64,7 +64,7 @@
 					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "Test de Afinidad" %} (Alt+n)"><i class="icon-heart"></i> {% trans "Test de Afinidad" %}</a></li>
 					{% endif %}
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_two_candidates_detail_view' slug=election.slug slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars and election.uses_preguntales  %}
 					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
