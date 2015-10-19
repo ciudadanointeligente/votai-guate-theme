@@ -61,13 +61,13 @@
 					<li {% block tab_questionary %}{% endblock %}><a href="{% url 'questionary_detail_view' slug=election.slug %}" accesskey="c" title="{% trans "Cuestionario" %} (Alt+c)"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
 					{% endif %}
 					{% if 'soulmate'|val_navbars and election.uses_soul_mate  %}
-					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "Test de Afinidad" %} (Alt+n)"><i class="icon-heart"></i> {% trans "Test de Afinidad" %}</a></li>
+					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="Llena el cuestionario contestando cada respuesta para encontrar al candidato más afín a tus intereses. (Alt+n)"><i class="icon-heart"></i> {% trans "Test de Afinidad" %}</a></li>
 					{% endif %}
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_two_candidates_detail_view' slug=election.slug slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_two_candidates_detail_view' slug=election.slug slug_candidate_one='jimmy-morales' slug_candidate_two='sandra-torres-casanova' %}{% endblock url_face_to_face %}" accesskey="f" title="Te enumeramos las posturas de los candidatos para que los compares. Además, pusimos citas textuales de lo que dicen en los medios de comunicación vrs lo que nos dicen a nosotros para comparar la coherencia de sus respuestas. (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars and election.uses_preguntales  %}
-					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
+					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="En esta sección puedes llenar el formulario para hacerle preguntas a los candidatos. (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars and election.uses_ranking  %}
 					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_view' slug=election.slug %}" accesskey="a" title="{% trans "Ranking" %} (Alt+n)"><i class="fa fa-bar-chart"></i> {% trans "Ranking" %}</a></li>
