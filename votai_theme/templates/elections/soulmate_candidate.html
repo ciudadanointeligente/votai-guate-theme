@@ -61,6 +61,9 @@ $(document).ready(function(){
 	<div id="msj-alerta" class="alert alert-warning" style="display:none">
 		<strong>{% trans "Atención!" %}</strong> {% trans "Para brindar una mejor respuesta es necesario que respondas todas las preguntas."%}
 	</div>
+	<div id="msj-alerta" class="alert alert-info">
+		Llena el cuestionario contestando cada respuesta para encontrar al candidato más afín a tus intereses.
+	</div>
 	<div class="row">
 		<form id="form-soulmate" role="form">
 		{% for category in election.categories.all %}

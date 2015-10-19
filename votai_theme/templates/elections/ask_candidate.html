@@ -10,6 +10,9 @@
 {% block tab_ask %}class="active"{% endblock %}
 
 {% block mainelection %}
+<div id="msj-alerta" class="alert alert-info">
+    En esta sección puedes llenar el formulario para hacerle preguntas a los candidatos.
+</div>
 <!-- ask -->
 <div class="ask-form">
     <form action="{% url 'ask_detail_view' election.slug %}"  role="form" method="post">{% csrf_token %}
