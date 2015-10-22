@@ -62,7 +62,7 @@ $(document).ready(function(){
 		<strong>{% trans "Atención!" %}</strong> {% trans "Para brindar una mejor respuesta es necesario que respondas todas las preguntas."%}
 	</div>
 	<div id="msj-alerta" class="alert alert-info">
-		Llena el cuestionario contestando cada respuesta para encontrar al candidato más afín a tus intereses.
+		Llena el cuestionario contestando cada respuesta para encontrar al candidato más afín a tus intereses. Para brindar una mejor respuesta es necesario que respondas todas las preguntas.
 	</div>
 	<div class="row">
 		<form id="form-soulmate" role="form">
@@ -106,7 +106,7 @@ $(document).ready(function(){
 		{% endfor %}
 
 		<div>
-			<button type="submit" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+			<button type="submit" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar CandiDato más afín" %}</button>
 		</div>
 		{% csrf_token %}
 		</form>
